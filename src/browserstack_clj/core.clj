@@ -95,7 +95,8 @@
 
 (defn save-url-screenshot! 
   "creates a worker for the given url and browser, saves a screenshot and then deletes the 
-  worker."
+  worker.
+  Note: workers are automatically deleted in case of any exceptions."
   [creds browser url destination]
   (let [worker-id (create-worker! creds browser url)]
     (try 
