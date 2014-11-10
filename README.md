@@ -1,7 +1,7 @@
 # browserstack-clj
 
 
-A Clojure library wrapping the [[https://github.com/browserstack/api][BrowserStack API]]. 
+A Clojure library wrapping the [BrowserStack API](https://github.com/browserstack/api). 
 
 ## Installation
 
