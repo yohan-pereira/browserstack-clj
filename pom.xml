@@ -3,7 +3,7 @@
   <groupId>browserstack-clj</groupId>
   <artifactId>browserstack-clj</artifactId>
   <packaging>jar</packaging>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.1-SNAPSHOT</version>
   <name>browserstack-clj</name>
   <description>A Clojure wrapper over the browserstack API.</description>
   <licenses>
@@ -13,7 +13,7 @@
     </license>
   </licenses>
   <scm>
-    <tag>HEAD
+    <tag>6d37e08cc587b6f1ee4231b5f8fb0eedc22bfd54
 </tag>
     <url/>
   </scm>

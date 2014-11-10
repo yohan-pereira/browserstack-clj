@@ -1,3 +1,12 @@
+#+TITLE:    browserstack-clj readme
+#+AUTHOR:   Yohan Pereira
+#+STARTUP:  align fold nodlcheck lognotestate showall
+#+OPTIONS:  H:4 num:nil toc:t \n:nil @:t ::t |:t ^:{} -:t f:t *:t
+#+OPTIONS:  skip:nil d:(HIDE) tags:not-in-toc
+#+PROPERTY: header-args :results code :exports both :noweb yes
+#+HTML_HEAD: <style type="text/css"> body {margin-right:15%; margin-left:15%;} </style>
+#+LANGUAGE: en
+
 # browserstack-clj
 
 
