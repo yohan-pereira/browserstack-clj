@@ -73,16 +73,19 @@
     (if (nil? (:device browser))
       ;desktop
       (string/join "_" [(:os browser)
-                                (:os_version browser)
-                                (:browser browser)
-                                (:browser_version browser)
-                                (quot (System/currentTimeMillis) 1000)])
+                        (:os_version browser)
+                        (:browser browser)
+                        (:browser_version browser)
+                        (quot (System/currentTimeMillis) 1000)
+                        ".png"])
       ;mobile
       (string/join "_" [(:device browser)
-                                (:os browser)
-                                (:os_version browser)
-                                (:browser browser)
-                                (quot (System/currentTimeMillis) 1000)]))
+                        (:os browser)
+                        (:os_version browser)
+                        (:browser browser)
+                        (quot (System/currentTimeMillis) 1000)
+                        ".png" 
+                        ]))
     #" "
     "_"))
 
