@@ -1,12 +1,3 @@
-#+TITLE:    browserstack-clj readme
-#+AUTHOR:   Yohan Pereira
-#+STARTUP:  align fold nodlcheck lognotestate showall
-#+OPTIONS:  H:4 num:nil toc:t \n:nil @:t ::t |:t ^:{} -:t f:t *:t
-#+OPTIONS:  skip:nil d:(HIDE) tags:not-in-toc
-#+PROPERTY: header-args :results code :exports both :noweb yes
-#+HTML_HEAD: <style type="text/css"> body {margin-right:15%; margin-left:15%;} </style>
-#+LANGUAGE: en
-
 # browserstack-clj
 
 
@@ -14,9 +5,7 @@ A Clojure library wrapping the [[https://github.com/browserstack/api][BrowserSta
 
 ## Installation
 
-** Installation
-
-=browserstack-clj= is available as a Maven artifact from [[https://clojars.org/browserstack-clj][Clojars]]:
+Simply add browserstack-clj as a dependency to your lein project:
 
 [![Clojars Project](http://clojars.org/browserstack-clj/latest-version.svg)](http://clojars.org/browserstack-clj)
 
@@ -24,23 +13,22 @@ A Clojure library wrapping the [[https://github.com/browserstack/api][BrowserSta
 
 First, require it in the REPL:
 
-#+BEGIN_SRC clojure
+```clojure
 (require '[browserstack-clj.core :as browserstack])
-#+END_SRC
+```
 
 Or in your application:
 
-#+BEGIN_SRC clojure
+```clojure
 (ns my-app.core
   (:require [browserstack-clj.core :as browserstack]))
-#+END_SRC
+```
 
 
 Heres a sample program that saves screenshots of a url on all versions
 of IE supported on windows 7.
 
-#+BEGIN_SRC clojure
-
+```clojure
 (ns browserstack-clj-sample.core
   (:require [browserstack-clj.core :refer [browsers gen-filename save-url-screenshot!])
   (:gen-class))
@@ -60,7 +48,7 @@ of IE supported on windows 7.
         (println "saving to" filename)
 	;Note: workers are automatically deleted in case of any exceptions.
         (save-url-screenshot! creds browser "https://github.com/404" filename)))))
-#+END_SRC
+```
 
 Additionally you can access various API functions like create-worker!, status, delete-worker!
 and save-worker-screenshot! individually if you need to. Refer to the inline documentation for
