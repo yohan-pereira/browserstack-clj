@@ -59,11 +59,6 @@
                                  :as         :json})]
     (-> response :body :time)))
 
-(defn directory? 
-  "checks if the given path represents a file."
-  [path]
-  (.isDirectory (new File path)))
-
 
 (defn gen-filename
   "Helper function to generate a file name for screenshots."
@@ -88,7 +83,6 @@
                         ]))
     #" "
     "_"))
-
 
 (defn save-worker-screenshot!
   "saves a screenshot of the specified worker to destination."
