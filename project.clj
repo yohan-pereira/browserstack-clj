@@ -1,4 +1,4 @@
-(defproject browserstack-clj "0.1.1-SNAPSHOT"
+(defproject browserstack-clj "0.1.2-SNAPSHOT"
   :description "A Clojure wrapper over the browserstack API."
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}

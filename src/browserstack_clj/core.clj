@@ -45,8 +45,10 @@
 
 (defn status
   "gets the status of a worker"
-  [{:keys [username access-key]} worker-id]
-  ((client/get (gen-url "worker" worker-id) 
+  [{:keys [username access-key]} & [worker-id]]
+  ((client/get (if (some? worker-id) 
+                 (gen-url "worker" worker-id) ;get status of specified worker
+                 (gen-url "worker"))  ;get status of all workers
                {:basic-auth   [username access-key]
                 :as           :json})
    :body))
@@ -93,6 +95,26 @@
     (with-open [w (io/output-stream destination)]
       (.write w (:body response)))))
 
+(defn wait-for-worker
+  "Waits for a browser stack instance to change its status to 'running'.
+  If it takes more than the timeout specified an exception is thrown else 
+  the number of tries are returned."
+  [creds worker-id timeout]
+  (let [end (+ (* timeout 1000) (System/currentTimeMillis))] 
+    (loop [tries 1]
+      (when (> (System/currentTimeMillis) end)
+        (throw (new Exception "Timed out waiting for BrowserStack instance to start.")))
+      (if (-> (status creds worker-id)
+              :status
+              (= "running"))
+        ;retrun if status is running
+        tries
+
+        ;else sleep for 1 second and retry
+        (do 
+          (Thread/sleep 1000)
+          (recur (inc tries)))))))
+
 (defn save-url-screenshot! 
   "creates a worker for the given url and browser, saves a screenshot and then deletes the 
   worker.
@@ -101,9 +123,17 @@
   (let [worker-id (create-worker! creds browser url)]
     (try 
       (println "created worker" worker-id)
-      (clojure.pprint/pprint (status creds worker-id))
+      (wait-for-worker creds worker-id 5)
+      (println "worker is running")
       (save-worker-screenshot! creds worker-id destination)
       (catch Exception e (throw e))
       (finally (do (println "deleting worker" worker-id) 
                    (delete-worker! creds worker-id))))))
 
+(defn api-status
+  "Gets the api status."
+  [{:keys [username access-key]}]
+  ((client/get (gen-url "status")
+               {:basic-auth   [username access-key]
+                :as           :json})
+   :body))
