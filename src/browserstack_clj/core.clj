@@ -111,7 +111,7 @@
 
         ;else sleep for 1 second and retry
         (do 
-          (println "Worker not running retrying.")
+          (println "worker not running retrying.")
           (Thread/sleep 500)
           (recur (inc tries)))))))
 
@@ -124,7 +124,7 @@
     (try 
       (println "created worker" worker-id)
       (wait-for-worker creds worker-id (or timeout 5))
-      (println "Worker is running, saving screenshot.")
+      (println "worker is running, saving screenshot.")
       (save-worker-screenshot! creds worker-id destination)
       (catch Exception e (throw e))
       (finally (do (println "deleting worker" worker-id) 
