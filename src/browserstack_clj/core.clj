@@ -65,26 +65,25 @@
 (defn gen-filename
   "Helper function to generate a file name for screenshots."
   [browser]
-  ;replace spaces with underscores
-  (string/replace
-    (if (nil? (:device browser))
-      ;desktop
-      (string/join "_" [(:os browser)
-                        (:os_version browser)
-                        (:browser browser)
-                        (:browser_version browser)
-                        (quot (System/currentTimeMillis) 1000)
-                        ".png"])
-      ;mobile
-      (string/join "_" [(:device browser)
-                        (:os browser)
-                        (:os_version browser)
-                        (:browser browser)
-                        (quot (System/currentTimeMillis) 1000)
-                        ".png" 
-                        ]))
-    #" "
-    "_"))
+  (str
+    ;replace spaces with underscores
+    (string/replace
+      (if (nil? (:device browser))
+        ;desktop
+        (string/join "_" [(:os browser)
+                          (:os_version browser)
+                          (:browser browser)
+                          (:browser_version browser)])
+        ;mobile
+        (string/join "_" [(:device browser)
+                          (:os browser)
+                          (:os_version browser)
+                          (:browser browser)]))
+      #" "
+      "_")
+
+    ;API documentation says its a png but its a jpg.
+    "_" (quot (System/currentTimeMillis) 1000) ".jpg"))
 
 (defn save-worker-screenshot!
   "saves a screenshot of the specified worker to destination."
