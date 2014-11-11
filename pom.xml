@@ -3,7 +3,7 @@
   <groupId>browserstack-clj</groupId>
   <artifactId>browserstack-clj</artifactId>
   <packaging>jar</packaging>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.3-SNAPSHOT</version>
   <name>browserstack-clj</name>
   <description>A Clojure wrapper over the browserstack API.</description>
   <licenses>
@@ -13,9 +13,11 @@
     </license>
   </licenses>
   <scm>
-    <tag>6d37e08cc587b6f1ee4231b5f8fb0eedc22bfd54
+    <connection>scm:git:git://github.com/yohan-pereira/browserstack-clj.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/yohan-pereira/browserstack-clj.git</developerConnection>
+    <tag>ad1117beb36ca5048ca33f9c9f82b86474bd8637
 </tag>
-    <url/>
+    <url>https://github.com/yohan-pereira/browserstack-clj</url>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

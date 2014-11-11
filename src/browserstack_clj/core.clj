@@ -112,19 +112,20 @@
 
         ;else sleep for 1 second and retry
         (do 
-          (Thread/sleep 1000)
+          (println "Worker not running retrying.")
+          (Thread/sleep 500)
           (recur (inc tries)))))))
 
 (defn save-url-screenshot! 
   "creates a worker for the given url and browser, saves a screenshot and then deletes the 
   worker.
   Note: workers are automatically deleted in case of any exceptions."
-  [creds browser url destination]
+  [creds browser url destination & [timeout]]
   (let [worker-id (create-worker! creds browser url)]
     (try 
       (println "created worker" worker-id)
-      (wait-for-worker creds worker-id 5)
-      (println "worker is running")
+      (wait-for-worker creds worker-id (or timeout 5))
+      (println "Worker is running, saving screenshot.")
       (save-worker-screenshot! creds worker-id destination)
       (catch Exception e (throw e))
       (finally (do (println "deleting worker" worker-id) 
