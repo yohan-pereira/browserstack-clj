@@ -30,24 +30,24 @@ of IE supported on windows 7.
 
 ```clojure
 (ns browserstack-clj-sample.core
-  (:require [browserstack-clj.core :refer [browsers gen-filename save-url-screenshot!])
+  (:require [browserstack-clj.core :refer [browsers gen-filename save-url-screenshot!]])
   (:gen-class))
 
 
 (defn -main
   [& args]
-  (let [creds {:username "username" :access-key "browserstack-accesskey"}
-	;filter matching browsers
+  (let [creds {:username "username" :access-key "access-key"}
+        ;filter matching browsers
         ies       (filter #(and (= "Windows" (:os         %))
-                                (= "7"       (:os_version %))  
-                                (= "ie"      (:browser    %))) 
+                                (= "7"       (:os_version %))
+                                (= "ie"      (:browser    %)))
                           (browsers creds))]
     (doseq [browser ies]
       ;generate a filename for the screenshots using the helper function.
       (let [filename (str "./screenshots/" (gen-filename browser))]
         (println "saving to" filename)
-	;Note: workers are automatically deleted in case of any exceptions.
-        (save-url-screenshot! creds browser "https://github.com/404" filename)))))
+        ;Note: workers are automatically deleted in case of any exceptions.
+        (save-url-screenshot! creds browser "https://github.com/404" filename 10)))))
 ```
 
 Additionally you can access various API functions like create-worker!, status, delete-worker!
